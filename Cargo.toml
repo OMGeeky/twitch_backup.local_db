@@ -1,5 +1,5 @@
 [package]
-name = "local_db"
+name = "local-db"
 version = "0.1.0"
 edition = "2021"
 
@@ -21,6 +21,6 @@ tracing-subscriber = { version = "0.3" ,optional = true}
 build-binary = ["anyhow", "tracing-subscriber"]
 
 [[bin]]
-name = "local_db"
+name = "local-db"
 required-features = ["build-binary"]
 
