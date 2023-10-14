@@ -15,6 +15,7 @@ use tracing::{info, instrument};
 
 pub mod entities;
 mod migrator;
+pub mod prelude;
 pub mod re_exports;
 
 pub const DATABASE_URL: &str = "sqlite:./data.db?mode=rwc";
