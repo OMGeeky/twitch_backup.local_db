@@ -22,6 +22,8 @@ pub struct Model {
     pub youtube_playlist_created_at: Option<String>,
     pub part_count: i32,
     pub status: Status,
+    pub fail_count: i32,
+    pub fail_reason: Option<String>,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
