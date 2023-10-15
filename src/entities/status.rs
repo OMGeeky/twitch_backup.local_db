@@ -7,14 +7,20 @@ pub enum Status {
     NotStarted,
     #[sea_orm(num_value = 10)]
     Downloading,
+    #[sea_orm(num_value = 19)]
+    DownloadFailed,
     #[sea_orm(num_value = 20)]
     Downloaded,
     #[sea_orm(num_value = 30)]
     Splitting,
+    #[sea_orm(num_value = 39)]
+    SplitFailed,
     #[sea_orm(num_value = 40)]
     Split,
     #[sea_orm(num_value = 50)]
     PartiallyUploaded,
+    #[sea_orm(num_value = 59)]
+    UploadFailed,
     #[sea_orm(num_value = 60)]
     Uploaded,
     #[sea_orm(num_value = 90)]
