@@ -18,6 +18,8 @@ pub enum Status {
     #[sea_orm(num_value = 40)]
     Split,
     #[sea_orm(num_value = 50)]
+    Uploading,
+    #[sea_orm(num_value = 55)]
     PartiallyUploaded,
     #[sea_orm(num_value = 59)]
     UploadFailed,

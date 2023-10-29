@@ -10,6 +10,7 @@ pub struct Model {
     #[sea_orm(primary_key, auto_increment = false)]
     pub part: i32,
     pub upload_status: UploadStatus,
+    pub youtube_video_id: Option<String>,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

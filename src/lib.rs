@@ -7,8 +7,8 @@ use crate::{
 };
 use sea_orm::ActiveValue::Set;
 use sea_orm::{
-    ActiveModelTrait, ColumnTrait, Database, DatabaseConnection, DbErr, EntityTrait, ModelTrait,
-    QueryFilter,
+    ActiveModelTrait, ActiveValue, ColumnTrait, Database, DatabaseConnection, DbErr, EntityTrait,
+    ModelTrait, QueryFilter,
 };
 use sea_orm_migration::MigratorTrait;
 use tracing::{info, instrument};
@@ -32,7 +32,8 @@ pub async fn reset_db(db: &DatabaseConnection) -> Result<(), DbErr> {
 }
 /// Applies all migrations that are not already applied.
 pub async fn migrate_db(db: &DatabaseConnection) -> Result<(), DbErr> {
-    Migrator::refresh(db).await?;
+    Migrator::up(db, None).await?;
+    // Migrator::refresh(db).await?;
     Ok(())
 }
 
@@ -104,6 +105,7 @@ pub async fn create_video_upload<'a, V: Into<&'a videos::Model>>(
         video_id: Set(video.id),
         part: Set(part),
         upload_status: Set(UploadStatus::Pending),
+        youtube_video_id: ActiveValue::NotSet,
     };
     let upload = upload.insert(db).await?;
     Ok(upload)
