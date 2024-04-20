@@ -1,5 +1,5 @@
 [package]
-name = "local-db"
+name = "twba-local-db"
 version = "0.2.1"
 edition = "2021"
 
@@ -23,6 +23,6 @@ re-exports-sea-orm = []
 default = ["re-exports-sea-orm"]
 
 [[bin]]
-name = "local-db"
+name = "twba-local-db"
 required-features = ["build-binary"]
 
