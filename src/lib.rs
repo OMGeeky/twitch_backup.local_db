@@ -38,7 +38,7 @@ pub async fn migrate_db(db: &DatabaseConnection) -> Result<(), DbErr> {
 }
 
 /// Prints all entries in the database. This is for debugging.
-#[instrument]
+#[instrument(skip(db))]
 pub async fn print_db(db: &DatabaseConnection) -> Result<(), DbErr> {
     info!("Printing DB");
     let users = Users::find().all(db).await?;

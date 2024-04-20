@@ -29,7 +29,7 @@ async fn run() -> Result<(), Box<dyn Error>> {
     info!("Bye!");
     Ok(())
 }
-#[instrument]
+#[instrument(skip(db))]
 async fn sample(db: &DatabaseConnection) -> anyhow::Result<()> {
     let users = twba_local_db::get_watched_users(db).await?;
     let user = users.first().context("Could not get any users...")?;
