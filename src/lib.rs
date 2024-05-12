@@ -1,10 +1,3 @@
-use crate::entities::video_upload::UploadStatus;
-use crate::{
-    entities::prelude::{Users, VideoUpload, Videos},
-    entities::status::Status,
-    entities::*,
-    migrator::Migrator,
-};
 use sea_orm::ActiveValue::Set;
 use sea_orm::{
     ActiveModelTrait, ActiveValue, ColumnTrait, Database, DatabaseConnection, DbErr, EntityTrait,
@@ -12,6 +5,13 @@ use sea_orm::{
 };
 use sea_orm_migration::MigratorTrait;
 use tracing::{info, instrument};
+use {
+    entities::prelude::{Users, VideoUpload, Videos},
+    entities::status::Status,
+    entities::video_upload::UploadStatus,
+    entities::*,
+    migrator::Migrator,
+};
 
 pub mod entities;
 mod migrator;

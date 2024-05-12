@@ -26,6 +26,7 @@ pub struct Model {
     /// be split into multiple parts.
     pub youtube_max_duration: i32,
     pub active: bool,
+    pub timezone: String,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
