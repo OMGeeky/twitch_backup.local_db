@@ -1,6 +1,6 @@
 [package]
 name = "twba-local-db"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -21,6 +21,8 @@ tracing-subscriber = { version = "0.3", optional = true }
 build-binary = ["anyhow", "tracing-subscriber"]
 re-exports-sea-orm = []
 default = ["re-exports-sea-orm"]
+sample-data = []
+
 
 [[bin]]
 name = "twba-local-db"
