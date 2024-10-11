@@ -46,17 +46,17 @@ pub async fn print_db(db: &DatabaseConnection) -> Result<(), DbErr> {
     info!("Relations:");
 
     for u in users.iter() {
-        dbg!(&u);
+        info!("{:?}", u);
         for v in u.find_related(Videos).all(db).await.iter() {
             for video in v.iter() {
-                dbg!(&video);
+                info!("{:?}", &video);
                 video
                     .find_related(VideoUpload)
                     .all(db)
                     .await
                     .iter()
                     .for_each(|vu| {
-                        dbg!(vu);
+                        info!("{:?}", vu);
                     });
             }
         }
@@ -110,33 +110,3 @@ pub async fn create_video_upload<'a, V: Into<&'a videos::Model>>(
     let upload = upload.insert(db).await?;
     Ok(upload)
 }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//

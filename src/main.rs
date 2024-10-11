@@ -1,11 +1,11 @@
 use anyhow::Context;
-use twba_local_db::entities::status::Status;
-use twba_local_db::entities::videos;
-use twba_local_db::print_db;
 use sea_orm::ActiveValue::Set;
 use sea_orm::{ActiveModelTrait, DatabaseConnection, IntoActiveModel};
 use std::error::Error;
-use tracing::{info, instrument};
+use tracing::{info, instrument, trace};
+use twba_local_db::entities::status::Status;
+use twba_local_db::entities::videos;
+use twba_local_db::print_db;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -25,7 +25,7 @@ async fn run() -> Result<(), Box<dyn Error>> {
     twba_local_db::reset_db(&db).await?;
     twba_local_db::migrate_db(&db).await?;
     print_db(&db).await?;
-    sample(&db).await?;
+    trace!("{:?}", sample(&db).await);
     info!("Bye!");
     Ok(())
 }
@@ -34,7 +34,8 @@ async fn sample(db: &DatabaseConnection) -> anyhow::Result<()> {
     let users = twba_local_db::get_watched_users(db).await?;
     let user = users.first().context("Could not get any users...")?;
     info!("User: {:?}", user);
-    let not_started_videos = twba_local_db::get_videos_with_status(db, user, Status::NotStarted).await?;
+    let not_started_videos =
+        twba_local_db::get_videos_with_status(db, user, Status::NotStarted).await?;
 
     info!("Not started videos: {:?}", not_started_videos.len());
     let mut not_started_videos: Vec<videos::ActiveModel> = not_started_videos
