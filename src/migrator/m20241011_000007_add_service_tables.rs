@@ -26,7 +26,13 @@ impl MigrationTrait for Migration {
             .create_table(
                 Table::create()
                     .table(Tasks::Table)
-                    .col(ColumnDef::new(Tasks::Id).integer().not_null())
+                    .col(
+                        ColumnDef::new(Tasks::Id)
+                            .integer()
+                            .not_null()
+                            .auto_increment()
+                            .primary_key(),
+                    )
                     .col(ColumnDef::new(Tasks::ServiceId).integer().not_null())
                     .col(ColumnDef::new(Tasks::Description).string().null())
                     .col(ColumnDef::new(Tasks::Progress).big_integer().default(0))
