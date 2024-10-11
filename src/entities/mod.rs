@@ -2,7 +2,9 @@
 
 pub mod prelude;
 
+pub mod services;
 pub mod status;
+pub mod tasks;
 pub mod users;
 pub mod video_upload;
 pub mod videos;

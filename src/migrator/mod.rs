@@ -7,6 +7,7 @@ mod m20230916_000004_add_sample_data;
 mod m20231015_000005_alter_videos_table_for_errors;
 mod m20231029_000006_alter_video_uploads_table_for_youtube_id;
 mod m20240509_000006_alter_users_table_for_timezone;
+mod m20241011_000007_add_service_tables;
 
 pub struct Migrator;
 #[async_trait::async_trait]
@@ -20,6 +21,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20231015_000005_alter_videos_table_for_errors::Migration),
             Box::new(m20231029_000006_alter_video_uploads_table_for_youtube_id::Migration),
             Box::new(m20240509_000006_alter_users_table_for_timezone::Migration),
+            Box::new(m20241011_000007_add_service_tables::Migration),
         ]
     }
 }

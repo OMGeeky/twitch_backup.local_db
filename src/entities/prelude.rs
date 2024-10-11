@@ -11,3 +11,12 @@ pub use super::video_upload::{
 pub use super::videos::{
     Column as VideosColumn, Entity as Videos, Model as VideosModel, Relation as VideosRelation,
 };
+
+pub use super::services::{
+    Column as ServicesColumn, Entity as Services, Model as ServicesModel,
+    Relation as ServicesRelation,
+};
+
+pub use super::tasks::{
+    Column as TasksColumn, Entity as Tasks, Model as TasksModel, Relation as TasksRelation,
+};

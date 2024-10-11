@@ -6,7 +6,7 @@ use sea_orm::{
 use sea_orm_migration::MigratorTrait;
 use tracing::{info, instrument};
 use {
-    entities::prelude::{Users, VideoUpload, Videos},
+    entities::prelude::{Services, Tasks, Users, VideoUpload, Videos},
     entities::status::Status,
     entities::video_upload::UploadStatus,
     entities::*,
@@ -58,6 +58,19 @@ pub async fn print_db(db: &DatabaseConnection) -> Result<(), DbErr> {
                     .for_each(|vu| {
                         info!("{:?}", vu);
                     });
+            }
+        }
+    }
+
+    let services = Services::find().all(db).await?;
+
+    info!("Tasks:");
+
+    for services in services.iter() {
+        info!("{:?}", services);
+        for tasks in services.find_related(Tasks).all(db).await.iter() {
+            for task in tasks.iter() {
+                info!("{:?}", &task);
             }
         }
     }
